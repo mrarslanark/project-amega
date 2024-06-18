@@ -1,7 +1,14 @@
 import Network from './Network';
 
+export interface NetworkDetails {
+  ipAddress: string;
+  location: string;
+  timezone: string;
+  isp: string;
+}
+
 class WhoIs {
-  public async getDetails(ipAddress?: string) {
+  public async getDetails(ipAddress?: string): Promise<NetworkDetails> {
     const network = new Network('https://ipwho.is');
     const response: any = await network.get(ipAddress ?? '');
     const location = this.formatLocation(

@@ -1,14 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Text, TextInput, View} from 'react-native';
 import {DashboardProps} from '../../navigation/DashboardStack/types';
-import WhoIs from '../../services/WhoIs';
-
-interface NetworkDetails {
-  ipAddress: string;
-  location: string;
-  timezone: string;
-  isp: string;
-}
+import WhoIs, {type NetworkDetails} from '../../services/WhoIs';
 
 const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
   const [ipInput, setIPInput] = useState('');
