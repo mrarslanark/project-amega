@@ -1,6 +1,6 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-type DashboardStackParamList = {
+export type DashboardStackParamList = {
   Dashboard: {} | undefined;
   Detail: {} | undefined;
 };

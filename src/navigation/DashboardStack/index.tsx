@@ -14,7 +14,11 @@ const DashboardStack: React.FC = (): React.JSX.Element => {
         component={Dashboard}
         options={{title: 'Project AMEGA'}}
       />
-      <Stack.Screen name="Detail" component={Detail} />
+      <Stack.Screen
+        name="Detail"
+        component={Detail}
+        options={{title: 'Detail'}}
+      />
     </Stack.Navigator>
   );
 };
