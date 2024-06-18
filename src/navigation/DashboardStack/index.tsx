@@ -13,7 +13,7 @@ const DashboardStack: React.FC = (): React.JSX.Element => {
       <Stack.Screen
         name={Routes.Dashboard}
         component={Dashboard}
-        options={{title: 'IP Tracker'}}
+        options={{title: 'Dashboard'}}
       />
       <Stack.Screen
         name={Routes.Detail}
