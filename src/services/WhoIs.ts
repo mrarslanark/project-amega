@@ -1,14 +1,12 @@
 import Network from './Network';
 
 export interface NetworkDetails {
-  ipAddress: string;
-  location: string;
-  timezone: string;
-  isp: string;
+  title: string;
+  value: string;
 }
 
 class WhoIs {
-  public async getDetails(ipAddress?: string): Promise<NetworkDetails> {
+  public async getDetails(ipAddress?: string): Promise<NetworkDetails[]> {
     const network = new Network('https://ipwho.is');
     const response: any = await network.get(ipAddress ?? '');
     const location = this.formatLocation(
@@ -17,12 +15,14 @@ class WhoIs {
       response.postal,
     );
     const timezone = this.formatTimezone(response.timezone.utc);
-    return {
-      ipAddress: response.ip,
-      location,
-      timezone,
-      isp: response.connection.isp,
-    };
+    const values = [];
+    values.push(
+      {title: 'IP Address', value: response.ip},
+      {title: 'Location', value: location},
+      {title: 'Timezone', value: timezone},
+      {title: 'ISP', value: response.connection.isp},
+    );
+    return values;
   }
 
   private formatTimezone(utc: string) {

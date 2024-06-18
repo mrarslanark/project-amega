@@ -5,8 +5,10 @@ import {styles} from './styles';
 interface TextProps extends RNTextProps {
   variant?:
     | 'heading'
+    | 'title'
     | 'subtitle'
     | 'regular'
+    | 'medium'
     | 'button-primary'
     | 'error'
     | 'button-secondary'

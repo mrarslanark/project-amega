@@ -6,6 +6,11 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
   },
+  title: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: 'black',
+  },
   subtitle: {
     fontSize: 16,
     fontWeight: 'medium',
@@ -13,6 +18,11 @@ export const styles = StyleSheet.create({
   },
   regular: {
     fontSize: 16,
+    fontWeight: 'regular',
+    color: 'black',
+  },
+  medium: {
+    fontSize: 14,
     fontWeight: 'regular',
     color: 'black',
   },

@@ -1,16 +1,17 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {ScrollView, View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import Input from '../../components/Input';
 import Text from '../../components/Text';
 import {DashboardProps} from '../../navigation/DashboardStack/types';
 import WhoIs, {type NetworkDetails} from '../../services/WhoIs';
 import {styles} from './styles';
 import Button from '../../components/Button';
+import DetailItem from '../../components/DetailItem';
 
 const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
   const [ipInput, setIPInput] = useState('');
   const [ipInputError, setIPInputError] = useState<string | null>(null);
-  const [details, setDetails] = useState<NetworkDetails | null>(null);
+  const [details, setDetails] = useState<NetworkDetails[] | null>(null);
 
   const handleIPSearch = useCallback(async () => {
     try {
@@ -34,7 +35,7 @@ const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
   }, [details, handleIPSearch]);
 
   return (
-    <ScrollView contentContainerStyle={styles.wrapper}>
+    <View style={styles.wrapper}>
       <View style={styles.introWrapper}>
         <Text variant="heading">IP Tracker</Text>
         <Text variant="subtitle">
@@ -51,17 +52,28 @@ const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
           onSubmitEditing={handleIPSearch}
           error={ipInputError}
         />
-        <Button disabled variant="primary" onPress={handleIPSearch}>
+        <Button
+          disabled={ipInput.trim().length === 0}
+          variant="primary"
+          onPress={handleIPSearch}>
           SEARCH
         </Button>
       </View>
-      <View style={styles.introWrapper}>
-        <Text>IP Address: {details?.ipAddress ?? ''}</Text>
-        <Text>Location: {details?.location ?? ''}</Text>
-        <Text>Timezone: {details?.timezone ?? ''}</Text>
-        <Text>ISP: {details?.isp ?? ''}</Text>
-      </View>
-    </ScrollView>
+      {details && (
+        <View style={styles.detailWrapper}>
+          <FlatList
+            numColumns={2}
+            data={details}
+            columnWrapperStyle={styles.columnStyle}
+            contentContainerStyle={styles.contentStyle}
+            keyExtractor={item => item.title}
+            renderItem={({item}) => {
+              return <DetailItem title={item.title} value={item.value} />;
+            }}
+          />
+        </View>
+      )}
+    </View>
   );
 };
 
