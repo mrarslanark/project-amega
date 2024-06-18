@@ -1,16 +1,17 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {Routes} from '../../constants';
 
 export type DashboardStackParamList = {
-  Dashboard: {} | undefined;
-  Detail: {} | undefined;
+  [Routes.Dashboard]: {} | undefined;
+  [Routes.Detail]: {} | undefined;
 };
 
 export type DashboardProps = NativeStackScreenProps<
   DashboardStackParamList,
-  'Dashboard'
+  Routes.Dashboard
 >;
 
 export type DetailProps = NativeStackScreenProps<
   DashboardStackParamList,
-  'Detail'
+  Routes.Detail
 >;

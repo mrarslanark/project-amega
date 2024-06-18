@@ -1,10 +1,11 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {Routes} from '../../constants';
 
 export type MarketDataStackParamList = {
-  MarketData: {} | undefined;
+  [Routes.MarketData]: {} | undefined;
 };
 
 export type MarketDataProps = NativeStackScreenProps<
   MarketDataStackParamList,
-  'MarketData'
+  Routes.MarketData
 >;

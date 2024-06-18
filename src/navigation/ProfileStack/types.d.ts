@@ -1,10 +1,11 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {Routes} from '../../constants';
 
 export type ProfileStackParamList = {
-  Profile: {} | undefined;
+  [Routes.Profile]: {} | undefined;
 };
 
 export type ProfileProps = NativeStackScreenProps<
   ProfileStackParamList,
-  'Profile'
+  Routes.Profile
 >;
