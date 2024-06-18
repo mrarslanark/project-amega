@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
-import {Button, Text, TextInput, View} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {Button, TextInput, View} from 'react-native';
 import {DashboardProps} from '../../navigation/DashboardStack/types';
 import WhoIs, {type NetworkDetails} from '../../services/WhoIs';
+import {styles} from './styles';
+import Text from '../../components/Text';
 
 const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
   const [ipInput, setIPInput] = useState('');
   const [details, setDetails] = useState<NetworkDetails | null>(null);
 
-  const handleIPSearch = async () => {
+  const handleIPSearch = useCallback(async () => {
     try {
       // Retrieve the IP Address and call the API
       const whois = new WhoIs();
@@ -16,12 +18,23 @@ const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
     } catch (err) {
       console.warn(err);
     }
-  };
+  }, [ipInput]);
+
+  useEffect(() => {
+    if (details === null) {
+      handleIPSearch();
+    }
+  }, [details, handleIPSearch]);
 
   return (
-    <View>
-      <Text>IP Tracker</Text>
-      <Text>Input an IP Address</Text>
+    <View style={styles.wrapper}>
+      <View style={styles.introWrapper}>
+        <Text variant="heading">IP Tracker</Text>
+        <Text variant="subtitle">
+          Find details from an IP Address. Start by searching for an IP Address
+          below.
+        </Text>
+      </View>
       <TextInput
         keyboardType="decimal-pad"
         placeholder="Enter IP Address"
