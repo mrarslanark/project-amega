@@ -1,0 +1,1 @@
+export {createBottomBarIcon} from './BottomBarIcon';
