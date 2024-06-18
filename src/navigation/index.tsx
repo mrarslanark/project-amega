@@ -11,7 +11,16 @@ const BottomTab = createBottomTabNavigator();
 const Navigator: React.FC = (): React.JSX.Element => {
   return (
     <BottomTab.Navigator
-      screenOptions={{headerShown: false, tabBarActiveTintColor: 'red'}}>
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: '#086375',
+        tabBarStyle: {
+          minHeight: 80,
+        },
+        tabBarItemStyle: {
+          paddingBottom: 12,
+        },
+      }}>
       <BottomTab.Screen
         name={Routes.DashboardStack}
         component={DashboardStack}
