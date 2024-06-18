@@ -12,7 +12,7 @@ const DashboardStack: React.FC = (): React.JSX.Element => {
       <Stack.Screen
         name="Dashboard"
         component={Dashboard}
-        options={{title: 'Project AMEGA'}}
+        options={{title: 'IP Tracker'}}
       />
       <Stack.Screen
         name="Detail"
