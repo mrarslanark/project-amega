@@ -5,8 +5,15 @@ export interface NetworkDetails {
   value: string;
 }
 
-class WhoIs {
-  public async getDetails(ipAddress?: string): Promise<NetworkDetails[]> {
+class WhoIsService {
+  public async getDetails(
+    ipAddress?: string,
+    details?: NetworkDetails[] | null,
+  ): Promise<void | NetworkDetails[]> {
+    if (this.isSameIP(ipAddress, details)) {
+      return;
+    }
+
     const network = new Network('https://ipwho.is');
     const response: any = await network.get(ipAddress ?? '');
     const location = this.formatLocation(
@@ -25,6 +32,19 @@ class WhoIs {
     return values;
   }
 
+  private isSameIP(ipAddress?: string, details?: NetworkDetails[] | null) {
+    if (!details) {
+      return false;
+    }
+
+    const ipAddressObj = details.find(d => d.title === 'IP Address');
+    if (ipAddressObj && ipAddressObj.value === ipAddress) {
+      return true;
+    }
+
+    return false;
+  }
+
   private formatTimezone(utc: string) {
     return `UTC ${utc}`;
   }
@@ -34,4 +54,4 @@ class WhoIs {
   }
 }
 
-export default WhoIs;
+export default WhoIsService;

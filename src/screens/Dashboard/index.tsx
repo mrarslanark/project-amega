@@ -5,7 +5,7 @@ import Input from '../../components/Input';
 import {DashboardProps} from '../../navigation/DashboardStack/types';
 import DetailSection from '../../sections/DetailSection';
 import IntroductionSection from '../../sections/IntroductionSection';
-import WhoIs, {type NetworkDetails} from '../../services/WhoIs';
+import WhoIsService, {type NetworkDetails} from '../../services/WhoIs';
 import {styles} from './styles';
 
 const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
@@ -19,14 +19,16 @@ const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
       if (ipInputError) {
         setIPInputError(null);
       }
-      const whois = new WhoIs();
-      const result = await whois.getDetails(ipInput);
-      setDetails(result);
+      const whois = new WhoIsService();
+      const result = await whois.getDetails(ipInput, details);
+      if (result) {
+        setDetails(result);
+      }
     } catch (err) {
       setIPInput('Unable to fetch details');
       console.warn(err);
     }
-  }, [ipInput, ipInputError]);
+  }, [ipInput, ipInputError, details]);
 
   useEffect(() => {
     if (!details) {
