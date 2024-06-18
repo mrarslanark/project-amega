@@ -3,7 +3,15 @@ import {TextProps as RNTextProps, Text as RNText} from 'react-native';
 import {styles} from './styles';
 
 interface TextProps extends RNTextProps {
-  variant?: 'heading' | 'subtitle' | 'regular' | 'error';
+  variant?:
+    | 'heading'
+    | 'subtitle'
+    | 'regular'
+    | 'button-primary'
+    | 'error'
+    | 'button-secondary'
+    | 'button-tertiary'
+    | 'button-disabled';
 }
 
 const Text: React.FC<TextProps> = ({

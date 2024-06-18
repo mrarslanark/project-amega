@@ -13,5 +13,6 @@ export const styles = StyleSheet.create({
   inputWrapper: {
     padding: 32,
     backgroundColor: 'rgba(211, 208, 203, 0.2)',
+    rowGap: 12,
   },
 });

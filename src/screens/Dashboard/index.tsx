@@ -5,6 +5,7 @@ import Text from '../../components/Text';
 import {DashboardProps} from '../../navigation/DashboardStack/types';
 import WhoIs, {type NetworkDetails} from '../../services/WhoIs';
 import {styles} from './styles';
+import Button from '../../components/Button';
 
 const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
   const [ipInput, setIPInput] = useState('');
@@ -43,13 +44,16 @@ const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
       </View>
       <View style={styles.inputWrapper}>
         <Input
-          keyboardType="decimal-pad"
-          placeholder="Enter IP Address"
+          keyboardType={'decimal-pad'}
+          placeholder={'Search for any IP address'}
           onChangeText={setIPInput}
-          returnKeyType="done"
+          returnKeyType={'done'}
           onSubmitEditing={handleIPSearch}
           error={ipInputError}
         />
+        <Button disabled variant="primary" onPress={handleIPSearch}>
+          SEARCH
+        </Button>
       </View>
       <View style={styles.introWrapper}>
         <Text>IP Address: {details?.ipAddress ?? ''}</Text>
