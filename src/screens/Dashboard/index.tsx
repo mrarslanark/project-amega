@@ -1,12 +1,28 @@
 import React, {useState} from 'react';
 import {Button, Text, TextInput, View} from 'react-native';
 import {DashboardProps} from '../../navigation/DashboardStack/types';
+import WhoIs from '../../services/WhoIs';
+
+interface NetworkDetails {
+  ipAddress: string;
+  location: string;
+  timezone: string;
+  isp: string;
+}
 
 const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
-  const [ipAddress, setIPAddress] = useState('');
+  const [ipInput, setIPInput] = useState('');
+  const [details, setDetails] = useState<NetworkDetails | null>(null);
 
-  const handleIPSearch = () => {
-    console.log(ipAddress);
+  const handleIPSearch = async () => {
+    try {
+      // Retrieve the IP Address and call the API
+      const whois = new WhoIs();
+      const result = await whois.getDetails(ipInput);
+      setDetails(result);
+    } catch (err) {
+      console.warn(err);
+    }
   };
 
   return (
@@ -16,15 +32,14 @@ const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
       <TextInput
         keyboardType="decimal-pad"
         placeholder="Enter IP Address"
-        onChangeText={setIPAddress}
+        onChangeText={setIPInput}
         returnKeyType="done"
       />
       <Button onPress={handleIPSearch} title="Search" />
-      <Text>Current User Details</Text>
-      <Text>IP Address: 0.0.0.0</Text>
-      <Text>Location: California, U.S.A</Text>
-      <Text>Timezone: UTC +04:00</Text>
-      <Text>ISP: Cloudflare</Text>
+      <Text>IP Address: {details?.ipAddress ?? ''}</Text>
+      <Text>Location: {details?.location ?? ''}</Text>
+      <Text>Timezone: {details?.timezone ?? ''}</Text>
+      <Text>ISP: {details?.isp ?? ''}</Text>
     </View>
   );
 };
