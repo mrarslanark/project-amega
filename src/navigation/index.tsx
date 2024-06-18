@@ -1,10 +1,11 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
+import {Routes} from '../constants';
+import {createBottomBarIcon} from '../hoc';
+import {isIOS} from '../utils';
 import DashboardStack from './DashboardStack';
 import MarketDataStack from './MarketDataStack';
 import ProfileStack from './ProfileStack';
-import {Routes} from '../constants';
-import {createBottomBarIcon} from '../hoc';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -15,7 +16,7 @@ const Navigator: React.FC = (): React.JSX.Element => {
         headerShown: false,
         tabBarActiveTintColor: '#086375',
         tabBarStyle: {
-          minHeight: 80,
+          minHeight: isIOS ? 100 : 80,
         },
         tabBarItemStyle: {
           paddingBottom: 12,

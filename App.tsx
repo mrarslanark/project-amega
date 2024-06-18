@@ -1,15 +1,16 @@
 import React from 'react';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {StatusBar, StyleSheet} from 'react-native';
 import Navigator from './src/navigation';
 import {NavigationContainer} from '@react-navigation/native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const App: React.FC = (): React.JSX.Element => {
   return (
     <SafeAreaView style={styles.wrapper}>
-      <StatusBar barStyle={'dark-content'} backgroundColor={'white'} />
       <NavigationContainer>
         <Navigator />
       </NavigationContainer>
+      <StatusBar barStyle={'dark-content'} backgroundColor={'white'} />
     </SafeAreaView>
   );
 };
