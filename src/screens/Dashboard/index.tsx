@@ -1,24 +1,30 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {Button, TextInput, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
+import Input from '../../components/Input';
+import Text from '../../components/Text';
 import {DashboardProps} from '../../navigation/DashboardStack/types';
 import WhoIs, {type NetworkDetails} from '../../services/WhoIs';
 import {styles} from './styles';
-import Text from '../../components/Text';
 
 const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
   const [ipInput, setIPInput] = useState('');
+  const [ipInputError, setIPInputError] = useState<string | null>(null);
   const [details, setDetails] = useState<NetworkDetails | null>(null);
 
   const handleIPSearch = useCallback(async () => {
     try {
+      if (ipInputError) {
+        setIPInputError(null);
+      }
       // Retrieve the IP Address and call the API
       const whois = new WhoIs();
       const result = await whois.getDetails(ipInput);
       setDetails(result);
     } catch (err) {
+      setIPInput('Unable to fetch details');
       console.warn(err);
     }
-  }, [ipInput]);
+  }, [ipInput, ipInputError]);
 
   useEffect(() => {
     if (details === null) {
@@ -27,7 +33,7 @@ const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
   }, [details, handleIPSearch]);
 
   return (
-    <View style={styles.wrapper}>
+    <ScrollView contentContainerStyle={styles.wrapper}>
       <View style={styles.introWrapper}>
         <Text variant="heading">IP Tracker</Text>
         <Text variant="subtitle">
@@ -35,18 +41,23 @@ const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
           below.
         </Text>
       </View>
-      <TextInput
-        keyboardType="decimal-pad"
-        placeholder="Enter IP Address"
-        onChangeText={setIPInput}
-        returnKeyType="done"
-      />
-      <Button onPress={handleIPSearch} title="Search" />
-      <Text>IP Address: {details?.ipAddress ?? ''}</Text>
-      <Text>Location: {details?.location ?? ''}</Text>
-      <Text>Timezone: {details?.timezone ?? ''}</Text>
-      <Text>ISP: {details?.isp ?? ''}</Text>
-    </View>
+      <View style={styles.inputWrapper}>
+        <Input
+          keyboardType="decimal-pad"
+          placeholder="Enter IP Address"
+          onChangeText={setIPInput}
+          returnKeyType="done"
+          onSubmitEditing={handleIPSearch}
+          error={ipInputError}
+        />
+      </View>
+      <View style={styles.introWrapper}>
+        <Text>IP Address: {details?.ipAddress ?? ''}</Text>
+        <Text>Location: {details?.location ?? ''}</Text>
+        <Text>Timezone: {details?.timezone ?? ''}</Text>
+        <Text>ISP: {details?.isp ?? ''}</Text>
+      </View>
+    </ScrollView>
   );
 };
 

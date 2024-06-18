@@ -4,10 +4,14 @@ export const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: 'white',
-    padding: 18,
     rowGap: 12,
   },
   introWrapper: {
-    rowGap: 4,
+    margin: 18,
+    rowGap: 8,
+  },
+  inputWrapper: {
+    padding: 32,
+    backgroundColor: 'rgba(211, 208, 203, 0.2)',
   },
 });

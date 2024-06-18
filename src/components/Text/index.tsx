@@ -3,7 +3,7 @@ import {TextProps as RNTextProps, Text as RNText} from 'react-native';
 import {styles} from './styles';
 
 interface TextProps extends RNTextProps {
-  variant?: 'heading' | 'subtitle' | 'regular';
+  variant?: 'heading' | 'subtitle' | 'regular' | 'error';
 }
 
 const Text: React.FC<TextProps> = ({

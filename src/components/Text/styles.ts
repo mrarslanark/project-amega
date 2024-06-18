@@ -16,4 +16,9 @@ export const styles = StyleSheet.create({
     fontWeight: 'regular',
     color: 'black',
   },
+  error: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#CE4760',
+  },
 });
