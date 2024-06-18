@@ -2,6 +2,16 @@
   "name": "ProjectAmega",
   "version": "0.0.1",
   "private": true,
+  "author": {
+    "email": "arslanark@gmail.com",
+    "name": "Arslan Mushtaq",
+    "url": "https://arslanmushtaq.com"
+  },
+  "description": "Project contains code base for AMEGA Group assessment for Technical Lead - React Native Position",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrarslanark/project-amega"
+  },
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
