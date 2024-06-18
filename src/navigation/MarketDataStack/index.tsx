@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator<MarketDataStackParamList>();
 
 const MarketDataStack: React.FC = (): React.JSX.Element => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="MarketData">
       <Stack.Screen
         name="MarketData"
         component={MarketData}

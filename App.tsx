@@ -6,7 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 const App: React.FC = (): React.JSX.Element => {
   return (
     <SafeAreaView style={styles.wrapper}>
-      <StatusBar barStyle={'dark-content'} />
+      <StatusBar barStyle={'dark-content'} backgroundColor={'white'} />
       <NavigationContainer>
         <Navigator />
       </NavigationContainer>

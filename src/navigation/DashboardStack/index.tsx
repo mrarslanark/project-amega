@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator<DashboardStackParamList>();
 
 const DashboardStack: React.FC = (): React.JSX.Element => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Dashboard">
       <Stack.Screen
         name="Dashboard"
         component={Dashboard}
