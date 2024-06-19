@@ -10,10 +10,10 @@ import {SLICE_LIMIT} from '../../utils';
 import {styles} from './styles';
 
 export interface TradeDetail {
-  eventType: string;
-  symbol: string;
-  price: string;
-  quantity: string;
+  eventType?: string;
+  symbol?: string;
+  price?: string;
+  quantity?: string;
 }
 
 type ReducerStateType = {
