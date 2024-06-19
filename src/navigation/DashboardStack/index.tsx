@@ -4,12 +4,15 @@ import {Routes} from '../../constants';
 import Dashboard from '../../screens/Dashboard';
 import Detail from '../../screens/Detail';
 import {DashboardStackParamList} from './types';
+import {styles} from './styles';
 
 const Stack = createNativeStackNavigator<DashboardStackParamList>();
 
 const DashboardStack: React.FC = (): React.JSX.Element => {
   return (
-    <Stack.Navigator initialRouteName={Routes.Dashboard}>
+    <Stack.Navigator
+      initialRouteName={Routes.Dashboard}
+      screenOptions={{contentStyle: styles.contentStyle}}>
       <Stack.Screen
         name={Routes.Dashboard}
         component={Dashboard}
