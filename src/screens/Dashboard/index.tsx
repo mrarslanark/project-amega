@@ -14,7 +14,8 @@ import {styles} from './styles';
 const Dashboard: React.FC<DashboardProps> = ({
   navigation,
 }): React.JSX.Element => {
-  const {network, updateNetworkDetails} = useContext(NetworkContext);
+  const {network, updateNetworkDetails, updateImage} =
+    useContext(NetworkContext);
   const [ipInput, setIPInput] = useState('');
   const [ipInputError, setIPInputError] = useState<string | null>(null);
 
@@ -41,6 +42,7 @@ const Dashboard: React.FC<DashboardProps> = ({
   }, [handleIPSearch, network]);
 
   const handleImagePress = (imageId: string) => {
+    updateImage(imageId);
     navigation.navigate(Routes.Detail, {imageId});
   };
 
