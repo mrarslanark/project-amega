@@ -108,15 +108,12 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
       if (dataListRef.current) {
         dataListRef.current.scrollToEnd({animated: true});
       }
-    }, 1_000);
+    }, 30_000);
 
     return () => {
       clearTimeout(timeout);
     };
   }, [data]);
-
-  console.log({[`${Platform.OS}-data`]: data.length});
-  console.log({[`${Platform.OS}-price-data`]: priceData.length});
 
   return (
     <View style={styles.wrapper}>
