@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input should render successfully 1`] = `
+<View
+  style={
+    {
+      "rowGap": 4,
+    }
+  }
+>
+  <TextInput
+    placeholderTextColor="gray"
+    style={
+      {
+        "backgroundColor": "rgba(0, 0, 0, 0.05)",
+        "borderRadius": 12,
+        "color": "black",
+        "padding": 16,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`Input should render successfully with an error message 1`] = `
+<View
+  style={
+    {
+      "rowGap": 4,
+    }
+  }
+>
+  <TextInput
+    placeholderTextColor="gray"
+    style={
+      {
+        "backgroundColor": "rgba(0, 0, 0, 0.05)",
+        "borderRadius": 12,
+        "color": "black",
+        "padding": 16,
+      }
+    }
+  />
+  <View
+    style={
+      {
+        "alignItems": "flex-end",
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#CE4760",
+          "fontSize": 14,
+          "fontWeight": "500",
+        }
+      }
+    >
+      Error occured
+    </Text>
+  </View>
+</View>
+`;

@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItem should render null if any of the props is undefined 1`] = `null`;
+
+exports[`ListItem should render successfully 1`] = `null`;

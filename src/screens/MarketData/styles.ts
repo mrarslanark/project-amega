@@ -21,7 +21,9 @@ export const styles = StyleSheet.create({
     padding: 16,
   },
   listHeaderWrapper: {
-    paddingHorizontal: 16,
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: 'lightgray',
   },
   introWrapper: {
     rowGap: 4,

@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailItem should render successfully 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "rgba(0, 0, 0, 0.03)",
+      "flex": 1,
+      "paddingHorizontal": 18,
+      "paddingVertical": 18,
+      "rowGap": 4,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "black",
+        "fontSize": 18,
+        "fontWeight": "600",
+      }
+    }
+  >
+    Title
+  </Text>
+  <Text
+    numberOfLines={1}
+    style={
+      {
+        "color": "black",
+        "fontSize": 14,
+        "fontWeight": "regular",
+      }
+    }
+  >
+    Value
+  </Text>
+</View>
+`;
+
+exports[`DetailItem should render successfully with value to be Unknown 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "rgba(0, 0, 0, 0.03)",
+      "flex": 1,
+      "paddingHorizontal": 18,
+      "paddingVertical": 18,
+      "rowGap": 4,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "black",
+        "fontSize": 18,
+        "fontWeight": "600",
+      }
+    }
+  >
+    Title
+  </Text>
+  <Text
+    numberOfLines={1}
+    style={
+      {
+        "color": "black",
+        "fontSize": 14,
+        "fontWeight": "regular",
+      }
+    }
+  >
+    Unknown
+  </Text>
+</View>
+`;
