@@ -3,7 +3,9 @@ import {Routes} from '../../constants';
 
 export type DashboardStackParamList = {
   [Routes.Dashboard]: {} | undefined;
-  [Routes.Detail]: {} | undefined;
+  [Routes.Detail]: {
+    imageId: string;
+  };
 };
 
 export type DashboardProps = NativeStackScreenProps<

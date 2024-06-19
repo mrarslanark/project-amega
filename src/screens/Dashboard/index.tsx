@@ -8,8 +8,11 @@ import GallerySection from '../../sections/GallerySection';
 import IntroductionSection from '../../sections/IntroductionSection';
 import WhoIsService, {type NetworkDetails} from '../../services/WhoIs';
 import {styles} from './styles';
+import {Routes} from '../../constants';
 
-const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
+const Dashboard: React.FC<DashboardProps> = ({
+  navigation,
+}): React.JSX.Element => {
   const [ipInput, setIPInput] = useState('');
   const [ipInputError, setIPInputError] = useState<string | null>(null);
 
@@ -37,6 +40,10 @@ const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
     }
   }, [details, handleIPSearch]);
 
+  const handleImagePress = (imageId: string) => {
+    navigation.navigate(Routes.Detail, {imageId});
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.wrapper}>
       <IntroductionSection />
@@ -57,7 +64,7 @@ const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
         </Button>
       </View>
       <DetailSection details={details} />
-      <GallerySection />
+      <GallerySection onPressImage={handleImagePress} />
     </ScrollView>
   );
 };
