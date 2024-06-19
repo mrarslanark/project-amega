@@ -23,7 +23,9 @@ const GallerySection: React.FC<GallerySectionProps> = ({
         mode="parallax"
         scrollAnimationDuration={1000}
         renderItem={({item}) => (
-          <TouchableOpacity onPress={() => onPressImage(item)}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => onPressImage(item)}>
             <Image source={item} style={styles.image} resizeMode="cover" />
           </TouchableOpacity>
         )}

@@ -21,7 +21,10 @@ const Button: React.FC<ButtonProps> = ({
   }, [props.disabled, variant]);
 
   return (
-    <TouchableOpacity {...props} style={styles[selectedVariant]}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      {...props}
+      style={styles[selectedVariant]}>
       <Text variant={`button-${selectedVariant}`}>{children}</Text>
     </TouchableOpacity>
   );
