@@ -82,7 +82,7 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
 
         dataBufferRef.current = [];
       }
-    }, 1_000);
+    }, 30_000);
 
     return () => clearInterval(interval);
   }, []);
