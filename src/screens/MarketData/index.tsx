@@ -89,13 +89,13 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
 
   useEffect(() => {
     if (data.length > 500) {
-      setData(prevData => prevData.slice(250));
+      setData(prevData => prevData.slice(-250));
     }
 
     if (priceData.length > 1000) {
-      setPriceData(prevData => prevData.slice(500));
+      setPriceData(prevData => prevData.slice(-500));
     }
-  }, [data.length, priceData.length]);
+  }, [data, priceData]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
