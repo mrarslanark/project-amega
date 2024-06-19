@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DetailItem.tsx should render successfully 1`] = `
+exports[`DetailItem should render successfully 1`] = `
 <View
   style={
     {
@@ -38,7 +38,7 @@ exports[`DetailItem.tsx should render successfully 1`] = `
 </View>
 `;
 
-exports[`DetailItem.tsx should render successfully with value to be Unknown 1`] = `
+exports[`DetailItem should render successfully with value to be Unknown 1`] = `
 <View
   style={
     {

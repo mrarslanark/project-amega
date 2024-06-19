@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button.tsx should render successfully 1`] = `
+exports[`Button should render successfully 1`] = `
 <View
   accessibilityState={
     {

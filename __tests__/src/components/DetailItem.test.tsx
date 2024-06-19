@@ -2,7 +2,7 @@ import React from 'react';
 import {render, screen} from '@testing-library/react-native';
 import DetailItem from '../../../src/components/DetailItem';
 
-describe('DetailItem.tsx', () => {
+describe('DetailItem', () => {
   it('should render successfully', () => {
     render(<DetailItem title="Title" value="Value" />);
     expect(screen).toMatchSnapshot();
