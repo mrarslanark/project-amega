@@ -1,9 +1,9 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
+import {Routes} from '../../constants';
 import Dashboard from '../../screens/Dashboard';
 import Detail from '../../screens/Detail';
 import {DashboardStackParamList} from './types';
-import {Routes} from '../../constants';
 
 const Stack = createNativeStackNavigator<DashboardStackParamList>();
 

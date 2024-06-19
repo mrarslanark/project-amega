@@ -1,22 +1,22 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {ScrollView, View} from 'react-native';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import {Routes} from '../../constants';
 import {DashboardProps} from '../../navigation/DashboardStack/types';
+import {NetworkContext} from '../../providers/NetworkProvider';
 import DetailSection from '../../sections/DetailSection';
 import GallerySection from '../../sections/GallerySection';
 import IntroductionSection from '../../sections/IntroductionSection';
-import WhoIsService, {type NetworkDetails} from '../../services/WhoIs';
+import WhoIsService from '../../services/WhoIs';
 import {styles} from './styles';
-import {Routes} from '../../constants';
 
 const Dashboard: React.FC<DashboardProps> = ({
   navigation,
 }): React.JSX.Element => {
+  const {network, updateNetworkDetails} = useContext(NetworkContext);
   const [ipInput, setIPInput] = useState('');
   const [ipInputError, setIPInputError] = useState<string | null>(null);
-
-  const [details, setDetails] = useState<NetworkDetails[] | null>(null);
 
   const handleIPSearch = useCallback(async () => {
     try {
@@ -24,21 +24,21 @@ const Dashboard: React.FC<DashboardProps> = ({
         setIPInputError(null);
       }
       const whois = new WhoIsService();
-      const result = await whois.getDetails(ipInput, details);
+      const result = await whois.getDetails(ipInput, network);
       if (result) {
-        setDetails(result);
+        updateNetworkDetails(result);
       }
     } catch (err) {
       setIPInput('Unable to fetch details');
       console.warn(err);
     }
-  }, [ipInput, ipInputError, details]);
+  }, [ipInputError, ipInput, network, updateNetworkDetails]);
 
   useEffect(() => {
-    if (!details) {
+    if (!network) {
       handleIPSearch();
     }
-  }, [details, handleIPSearch]);
+  }, [handleIPSearch, network]);
 
   const handleImagePress = (imageId: string) => {
     navigation.navigate(Routes.Detail, {imageId});
@@ -63,7 +63,7 @@ const Dashboard: React.FC<DashboardProps> = ({
           SEARCH
         </Button>
       </View>
-      <DetailSection details={details} />
+      <DetailSection details={network} />
       <GallerySection onPressImage={handleImagePress} />
     </ScrollView>
   );
