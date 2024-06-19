@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import {DashboardProps} from '../../navigation/DashboardStack/types';
@@ -38,7 +38,7 @@ const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
   }, [details, handleIPSearch]);
 
   return (
-    <View style={styles.wrapper}>
+    <ScrollView contentContainerStyle={styles.wrapper}>
       <IntroductionSection />
       <View style={styles.inputWrapper}>
         <Input
@@ -58,7 +58,7 @@ const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
       </View>
       <DetailSection details={details} />
       <GallerySection />
-    </View>
+    </ScrollView>
   );
 };
 
