@@ -4,6 +4,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import {DashboardProps} from '../../navigation/DashboardStack/types';
 import DetailSection from '../../sections/DetailSection';
+import GallerySection from '../../sections/GallerySection';
 import IntroductionSection from '../../sections/IntroductionSection';
 import WhoIsService, {type NetworkDetails} from '../../services/WhoIs';
 import {styles} from './styles';
@@ -56,6 +57,7 @@ const Dashboard: React.FC<DashboardProps> = (): React.JSX.Element => {
         </Button>
       </View>
       <DetailSection details={details} />
+      <GallerySection />
     </View>
   );
 };

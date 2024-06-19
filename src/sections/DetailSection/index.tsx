@@ -20,6 +20,7 @@ const DetailSection: React.FC<DetailSectionProps> = ({
       <FlatList
         numColumns={2}
         data={details}
+        scrollEnabled={false}
         columnWrapperStyle={styles.columnStyle}
         contentContainerStyle={styles.contentStyle}
         keyExtractor={item => item.title}
