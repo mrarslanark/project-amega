@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer, useRef} from 'react';
+import React, {useCallback, useEffect, useReducer, useRef} from 'react';
 import {Dimensions, FlatList, ListRenderItem, View} from 'react-native';
 import {LineChart} from 'react-native-chart-kit';
 import ListItem from '../../components/ListItem';
@@ -6,6 +6,7 @@ import Text from '../../components/Text';
 import {MarketDataProps} from '../../navigation/MarketDataStack/types';
 import GraphLoadingSection from '../../sections/GraphLoadingSection';
 import {styles} from './styles';
+import {useFocusEffect} from '@react-navigation/native';
 
 export interface TradeDetail {
   eventType: string;
@@ -59,6 +60,14 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
   const dataBufferRef = useRef<TradeDetail[]>([]);
   const priceDataBufferRef = useRef<number[]>([]);
   const socketRef = useRef<WebSocket | null>(null);
+
+  useFocusEffect(
+    useCallback(() => {
+      if (dataListRef.current) {
+        dataListRef.current.scrollToEnd();
+      }
+    }, []),
+  );
 
   useEffect(() => {
     socketRef.current = new WebSocket(
