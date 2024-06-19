@@ -1,5 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Dimensions, FlatList, ListRenderItem, View} from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  ListRenderItem,
+  Platform,
+  View,
+} from 'react-native';
 import {LineChart} from 'react-native-chart-kit';
 import Text from '../../components/Text';
 import {MarketDataProps} from '../../navigation/MarketDataStack/types';
@@ -82,20 +88,20 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
 
         dataBufferRef.current = [];
       }
-    }, 30_000);
+    }, 10_000);
 
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    if (data.length > 500) {
-      setData(prevData => prevData.slice(-250));
+    if (data.length > 1000) {
+      setData(prevData => prevData.slice(0, 250));
     }
 
     if (priceData.length > 1000) {
-      setPriceData(prevData => prevData.slice(-500));
+      setPriceData(prevData => prevData.slice(0, 250));
     }
-  }, [data, priceData]);
+  }, [data.length, priceData.length]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -108,6 +114,9 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
       clearTimeout(timeout);
     };
   }, [data]);
+
+  console.log({[`${Platform.OS}-data`]: data.length});
+  console.log({[`${Platform.OS}-price-data`]: priceData.length});
 
   return (
     <View style={styles.wrapper}>
