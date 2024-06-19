@@ -10,8 +10,8 @@ import {SLICE_LIMIT} from '../../utils';
 import {styles} from './styles';
 
 export interface TradeDetail {
-  eventType?: string;
-  symbol?: string;
+  eventTime?: number;
+  is_market_maker?: boolean;
   price?: string;
   quantity?: string;
 }
@@ -49,8 +49,8 @@ const reducer = (
     case 'optimize-list':
       return {
         ...state,
-        tradeInfo: state.tradeInfo.slice(0, SLICE_LIMIT),
-        prices: state.prices.slice(0, SLICE_LIMIT),
+        tradeInfo: state.tradeInfo.slice(SLICE_LIMIT),
+        prices: state.prices.slice(SLICE_LIMIT),
       };
     default:
       return state;
@@ -91,10 +91,11 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
 
     socketRef.current.onmessage = ev => {
       const parsed = JSON.parse(ev.data);
-      const {e, s, p, q} = parsed;
+      console.log(parsed);
+      const {E, m, p, q} = parsed;
       dataBufferRef.current.push({
-        eventType: e,
-        symbol: s,
+        eventTime: E,
+        is_market_maker: m,
         price: p,
         quantity: q,
       });
@@ -122,13 +123,13 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
         dispatch({type: 'update-data', payload: dataBufferRef.current});
         dataBufferRef.current = [];
       }
-    }, 5_000);
+    }, 1_000);
 
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    if (state.prices.length > 1000 || state.tradeInfo.length > 1000) {
+    if (state.prices.length > 500 || state.tradeInfo.length > 500) {
       dispatch({type: 'optimize-list'});
     }
   }, [state.prices.length, state.tradeInfo.length]);
@@ -187,6 +188,9 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
         )}
       </View>
       <View style={styles.listWrapper}>
+        <View style={styles.listHeaderWrapper}>
+          <ListItem useAsHeader />
+        </View>
         <FlatList
           ref={dataListRef}
           data={state.tradeInfo}

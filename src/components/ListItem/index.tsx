@@ -3,14 +3,20 @@ import {View} from 'react-native';
 import {TradeDetail} from '../../screens/MarketData';
 import Text from '../Text';
 import {styles} from './styles';
+import dayjs from 'dayjs';
 
-const ListItem: React.FC<TradeDetail> = ({
-  eventType,
-  symbol,
+interface ListItemProps extends TradeDetail {
+  useAsHeader?: boolean;
+}
+
+const ListItem: React.FC<ListItemProps> = ({
+  useAsHeader = false,
+  eventTime,
+  is_market_maker,
   price,
   quantity,
 }): React.JSX.Element | null => {
-  if (!eventType || !symbol || !price || !quantity) {
+  if ((!eventTime || !price || !quantity) && !useAsHeader) {
     return null;
   }
 
@@ -21,10 +27,24 @@ const ListItem: React.FC<TradeDetail> = ({
 
   return (
     <View style={styles.wrapper}>
-      <Text variant="medium">{eventType}</Text>
-      <Text variant="medium">{symbol}</Text>
-      <Text variant="medium">{dollars.format(Number(price))}</Text>
-      <Text variant="medium">{quantity}</Text>
+      <View style={styles.textWrapper}>
+        <Text variant="medium">
+          {useAsHeader ? 'Event Time' : dayjs(eventTime).format('hh:mm:ss')}
+        </Text>
+      </View>
+      <View style={styles.textWrapper}>
+        <Text variant="medium">
+          {useAsHeader ? 'Market Maker' : is_market_maker ? 'Yes' : 'No'}
+        </Text>
+      </View>
+      <View style={styles.textWrapper}>
+        <Text variant="medium">
+          {useAsHeader ? 'Price Change' : dollars.format(Number(price))}
+        </Text>
+      </View>
+      <View style={styles.textWrapper}>
+        <Text variant="medium">{useAsHeader ? 'Quantity' : quantity}</Text>
+      </View>
     </View>
   );
 };
