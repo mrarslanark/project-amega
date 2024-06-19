@@ -23,4 +23,7 @@ export const styles = StyleSheet.create({
   listHeaderWrapper: {
     paddingHorizontal: 16,
   },
+  introWrapper: {
+    rowGap: 4,
+  },
 });

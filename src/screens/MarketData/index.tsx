@@ -121,7 +121,10 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.graphWrapper}>
-        <Text variant="heading">Price Graph</Text>
+        <View style={styles.introWrapper}>
+          <Text variant="heading">Price Graph</Text>
+          <Text variant="subtitle">BTCUSDT | aggTrade</Text>
+        </View>
         {priceData.length > 0 ? (
           <LineChart
             data={{
