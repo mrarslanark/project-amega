@@ -91,7 +91,6 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
 
     socketRef.current.onmessage = ev => {
       const parsed = JSON.parse(ev.data);
-      console.log(parsed);
       const {E, m, p, q} = parsed;
       dataBufferRef.current.push({
         eventTime: E,
