@@ -4,6 +4,14 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 > **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
+## Development
+
+Following programs are required to run the application
+
+1. Nodejs (v22.1.0)
+2. Android Studio
+3. Xcode (iOS)
+
 ## Step 1: Start the Metro Server
 
 First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
@@ -11,10 +19,6 @@ First, you will need to start **Metro**, the JavaScript _bundler_ that ships _wi
 To start Metro, run the following command from the _root_ of your React Native project:
 
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
 yarn start
 ```
 
@@ -25,20 +29,12 @@ Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _roo
 ### For Android
 
 ```bash
-# using npm
-npm run android
-
-# OR using Yarn
 yarn android
 ```
 
 ### For iOS
 
 ```bash
-# using npm
-npm run ios
-
-# OR using Yarn
 yarn ios
 ```
 
@@ -54,6 +50,23 @@ Now that you have successfully run the app, let's modify it.
 2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
 
    For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+
+## Testing
+
+Run unit tests for the components with the following
+
+```shell
+yarn test --collect-coverage
+```
+
+## Creating an Android Build
+
+1. Open the android folder in Android Studio
+2. From the top menu select Build -> Generate Signed Bundle / APK...
+3. Choose APK from the list and press Next
+4. Load the Keystore provided in the email or create a new one
+5. Use `production-key` as key alias and the details forward in the email and press Next
+6. Select release Build Variant and press Create
 
 ## Congratulations! :tada:
 
