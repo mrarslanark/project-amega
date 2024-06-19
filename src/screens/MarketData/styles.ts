@@ -12,16 +12,12 @@ export const styles = StyleSheet.create({
   },
   graphStyle: {
     right: '12%',
+    marginTop: 24,
   },
   listWrapper: {
     flex: 1,
   },
   listContentContainerStyle: {
     padding: 16,
-  },
-  itemWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    height: 24,
   },
 });

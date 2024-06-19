@@ -5,8 +5,9 @@ import Text from '../../components/Text';
 import {MarketDataProps} from '../../navigation/MarketDataStack/types';
 import GraphLoadingSection from '../../sections/GraphLoadingSection';
 import {styles} from './styles';
+import ListItem from '../../components/ListItem';
 
-interface TradeDetail {
+export interface TradeDetail {
   eventType: string;
   symbol: string;
   price: string;
@@ -81,7 +82,7 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
 
         dataBufferRef.current = [];
       }
-    }, 5_000);
+    }, 1_000);
 
     return () => clearInterval(interval);
   }, []);
@@ -90,7 +91,11 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
     if (data.length > 500) {
       setData(prevData => prevData.slice(250));
     }
-  }, [data.length]);
+
+    if (priceData.length > 1000) {
+      setPriceData(prevData => prevData.slice(500));
+    }
+  }, [data.length, priceData.length]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -182,12 +187,5 @@ const _getItemLayout = (
 });
 
 const _renderItem: ListRenderItem<TradeDetail> = ({item}) => {
-  return (
-    <View style={styles.itemWrapper}>
-      <Text variant="medium">{item.eventType}</Text>
-      <Text variant="medium">{item.symbol}</Text>
-      <Text variant="medium">{item.price}</Text>
-      <Text variant="medium">{item.quantity}</Text>
-    </View>
-  );
+  return <ListItem {...item} />;
 };
