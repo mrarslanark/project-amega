@@ -16,7 +16,7 @@ const DetailItem: React.FC<DetailItem> = ({
     <View style={styles.wrapper}>
       <Text variant="title">{title}</Text>
       <Text variant="medium" numberOfLines={1}>
-        {value ?? 'Unkown'}
+        {value ?? 'Unknown'}
       </Text>
     </View>
   );
