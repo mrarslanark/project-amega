@@ -1,3 +1,4 @@
+import {useFocusEffect} from '@react-navigation/native';
 import React, {useCallback, useEffect, useReducer, useRef} from 'react';
 import {Dimensions, FlatList, ListRenderItem, View} from 'react-native';
 import {LineChart} from 'react-native-chart-kit';
@@ -5,8 +6,8 @@ import ListItem from '../../components/ListItem';
 import Text from '../../components/Text';
 import {MarketDataProps} from '../../navigation/MarketDataStack/types';
 import GraphLoadingSection from '../../sections/GraphLoadingSection';
+import {SLICE_LIMIT} from '../../utils';
 import {styles} from './styles';
-import {useFocusEffect} from '@react-navigation/native';
 
 export interface TradeDetail {
   eventType: string;
@@ -30,7 +31,10 @@ const initialState: ReducerStateType = {
   prices: [],
 };
 
-const reducer = (state: ReducerStateType, action: ReducerActionType) => {
+const reducer = (
+  state: ReducerStateType,
+  action: ReducerActionType,
+): ReducerStateType => {
   switch (action.type) {
     case 'update-data':
       return {
@@ -45,8 +49,8 @@ const reducer = (state: ReducerStateType, action: ReducerActionType) => {
     case 'optimize-list':
       return {
         ...state,
-        tradeInfo: state.tradeInfo.slice(0, 250),
-        prices: state.prices.slice(0, 250),
+        tradeInfo: state.tradeInfo.slice(0, SLICE_LIMIT),
+        prices: state.prices.slice(0, SLICE_LIMIT),
       };
     default:
       return state;
@@ -64,7 +68,7 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
   useFocusEffect(
     useCallback(() => {
       if (dataListRef.current) {
-        dataListRef.current.scrollToEnd();
+        dataListRef.current?.scrollToEnd({animated: true});
       }
     }, []),
   );
@@ -132,7 +136,7 @@ const MarketData: React.FC<MarketDataProps> = (): React.JSX.Element => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (dataListRef.current) {
-        dataListRef.current.scrollToEnd();
+        dataListRef.current?.scrollToEnd({animated: true});
       }
     }, 1_000);
 
